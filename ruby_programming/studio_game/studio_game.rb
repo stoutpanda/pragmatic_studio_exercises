@@ -1,4 +1,4 @@
-#Arrays - Lesson 9
+#Objects Interacting - Lesson 10
 
 class Player
   attr_reader :health #getter method
@@ -25,32 +25,36 @@ class Player
   def name
     @name = @name.capitalize
   end
+end
+
+class Game
+  attr_reader :title
+
+  def initialize (title)
+    @title = title
+    @players = []
+  end
+
+  def add_player (player)
+    @players.push(player)
+  end
+
+  def play ()
+    puts "There are #{@players.count} players in #{@title}."
+    @players.each { |player| puts player }
+    @players.each do |player|
+      3.times { |p| player.blam }
+      player.w00t
+      puts player.to_s
+    end
+  end
+
 
 end
 
 
-player1 = Player.new('larry',60)
-player2 = Player.new('moe')
-player3 = Player.new("curly", 125)
-
-
-players = [player1,player2,player3]
-
-puts "There are #{players.count} in the game:"
-
-players.each do |player|
-  puts player
-end
-
-players.each do |player|
-  player.blam
-  player.blam
-  puts player
-end
-
-players.pop
-players.push(player4 = Player.new("Shemp", 90))
-
-players.each do |player|
-  puts player
-end
+  knuckleheads = Game.new("Knuckleheads")
+  knuckleheads.add_player(player1 = Player.new("Moe"))
+  knuckleheads.add_player(player2 = Player.new("larry",60))
+  knuckleheads.add_player(player2 = Player.new("curly",125))
+  knuckleheads.play
