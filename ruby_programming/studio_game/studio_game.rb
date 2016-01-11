@@ -1,4 +1,4 @@
-#Attributes - Lesson 7
+#Arrays - Lesson 9
 
 class Player
   attr_reader :health #getter method
@@ -17,7 +17,7 @@ class Player
   end
   def blam
     @health -= 10
-    puts "#{@name} got balmmed!"
+    puts "#{@name} got blammed!"
   end
   def score
     @health + @name.length
@@ -34,10 +34,23 @@ player2 = Player.new('moe')
 player3 = Player.new("curly", 125)
 
 
-puts player1.health
-puts player2.health
-puts player3.health
+players = [player1,player2,player3]
 
-player2.name = "lawrence"
-puts player2.name
-puts player2.to_s
+puts "There are #{players.count} in the game:"
+
+players.each do |player|
+  puts player
+end
+
+players.each do |player|
+  player.blam
+  player.blam
+  puts player
+end
+
+players.pop
+players.push(player4 = Player.new("Shemp", 90))
+
+players.each do |player|
+  puts player
+end
