@@ -1,4 +1,4 @@
-#Seperate Source Files - Lesson 11
+#Testing - Lesson 12
 require_relative 'game'
 require_relative 'player'
 

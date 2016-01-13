@@ -1,6 +1,6 @@
 
 class Player
-  attr_reader :health #getter method
+  attr_reader :health,:score #getter method
   attr_accessor :name # getter & setter
 
   def initialize (name, health=100)
@@ -8,7 +8,7 @@ class Player
     @health = health
   end
   def to_s
-    "I'm #{@name} with a health of #{score}!"
+    "I'm #{@name} with a health of #{@health} and a score of #{score}!"
   end
   def w00t
     @health += 15

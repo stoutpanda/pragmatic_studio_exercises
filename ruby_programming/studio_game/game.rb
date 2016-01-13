@@ -19,7 +19,7 @@ class Game
     @players.each do |player|
       3.times { |p| player.blam }
       player.w00t
-      puts player.to_s
+      puts player.to_s 
     end
   end
 end
