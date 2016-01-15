@@ -1,5 +1,6 @@
 require_relative 'die'
 require_relative 'player'
+require_relative 'game_turn'
 
 
 class Game
@@ -18,16 +19,8 @@ class Game
     puts "There are #{@players.count} players in #{@title}."
     @players.each { |player| puts player }
     @players.each do |player|
-      die = Die.new
-     case die.roll
-     when 1..2
-       player.blam
-     when 3..4
-       puts "#{player.name} was skipped."
-     else
-        player.w00t
-      end
-        puts player
+      GameTurn.take_turn(player)
+      puts player
     end
   end
 end

@@ -1,4 +1,4 @@
-#Conditional - Lesson 13
+#Modules - Lesson 14
 require_relative 'game'
 require_relative 'player'
 
