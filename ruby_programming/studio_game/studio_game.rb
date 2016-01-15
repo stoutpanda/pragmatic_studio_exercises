@@ -1,4 +1,4 @@
-#Testing - Lesson 12
+#Conditional - Lesson 13
 require_relative 'game'
 require_relative 'player'
 
