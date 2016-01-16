@@ -10,6 +10,9 @@ class Player
   def to_s
     "I'm #{@name} with a health of #{@health} and a score of #{score}!"
   end
+  def <=>(othr_plr)
+    othr_plr.score <=> score
+  end
   def w00t
     @health += 15
     puts "#{@name} got wooted!"
