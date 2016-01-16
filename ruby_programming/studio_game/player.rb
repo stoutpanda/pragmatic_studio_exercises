@@ -30,6 +30,10 @@ class Player
   def strong?
     @health > 100
   end
+  def print_n_a_h ()
+    puts "#{@name} (#{@health})"
+  end
+
 end
 
 if __FILE__ == $0

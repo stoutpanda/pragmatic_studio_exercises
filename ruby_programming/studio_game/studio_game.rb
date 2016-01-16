@@ -1,4 +1,4 @@
-#MBlocks - Lesson 15
+#Symboles & Structs
 require_relative 'game'
 require_relative 'player'
 

@@ -1,6 +1,7 @@
 require_relative 'die'
 require_relative 'player'
 require_relative 'game_turn'
+require_relative 'treasure_trove'
 
 
 class Game
@@ -20,10 +21,10 @@ class Game
     strong, wimp = @players.partition { |player| player.strong? }
 
     print "\n#{strong.count} Strong Player(s)\n"
-    strong.each { |p| puts "#{p.name} (#{p.health})"}
+    strong.each { |p| p.print_n_a_h }
 
     print "\n#{wimp.count} Wimpy Player(s)\n"
-    wimp.each { |p| puts "#{p.name} (#{p.health})"}
+    wimp.each { |p| p.print_n_a_h }
 
     puts "\n#{@title} High Scores:"
     @players.sort.each do |plr|
@@ -35,10 +36,13 @@ class Game
   def play (rounds)
     puts "There are #{@players.count} players in #{@title}."
     @players.each { |player| puts player }
-      1.upto(rounds) do |n|
-        puts "\nRound number #{n}:"
-          @players.each do |player|
-            GameTurn.take_turn(player)
+    treasures = TreasureTrove::TREASURES
+    puts "\nThere are #{treasures.count} treasures to be found:"
+    treasures.each { |t| puts "A #{t.name} is worth #{t.points}" }
+    1.upto(rounds) do |n|
+      puts "\nRound number #{n}:"
+      @players.each do |player|
+      GameTurn.take_turn(player)
         end
       end
     end
