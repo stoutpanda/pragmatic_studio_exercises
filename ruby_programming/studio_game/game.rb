@@ -5,7 +5,7 @@ require_relative 'treasure_trove'
 
 
 class Game
-  attr_reader :title
+  attr_reader :title,:total_points
 
   def initialize (title)
     @title = title
@@ -14,6 +14,10 @@ class Game
 
   def add_player (player)
     @players.push(player)
+  end
+  def total_points
+    @players.reduce(0) { |s,p| s + p.points }
+
   end
 
   def print_stats ()
@@ -26,6 +30,13 @@ class Game
     print "\n#{wimp.count} Wimpy Player(s)\n"
     wimp.each { |p| p.print_n_a_h }
 
+    print "\nTotal Treasure Points in game #{total_points}. \n"
+
+    print "\nPlayer's Point Totals:\n"
+    @players.each do |p|
+      puts "#{p.name}'s total points:"
+      puts "#{p.points} grand total points."
+    end
     puts "\n#{@title} High Scores:"
     @players.sort.each do |plr|
       fn = plr.name.ljust(20, '.')
