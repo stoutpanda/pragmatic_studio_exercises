@@ -1,4 +1,4 @@
-#Hashes
+#Custom Iterators
 require_relative 'game'
 require_relative 'player'
 
@@ -8,4 +8,3 @@ require_relative 'player'
   knuckleheads.add_player(player3 = Player.new("trevor",110))
   knuckleheads.play(100)
   knuckleheads.print_stats
- 

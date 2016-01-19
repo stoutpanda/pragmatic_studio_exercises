@@ -1,4 +1,4 @@
-
+require_relative 'treasure_trove'
 class Player
   attr_reader :health,:score,:points #getter method
   attr_accessor :name # getter & setter
@@ -31,7 +31,7 @@ class Player
   def strong?
     @health > 100
   end
-  def print_n_a_h ()
+  def print_n_a_h()
     puts "#{@name} (#{@health})"
   end
   def found_treasure(treasure)
@@ -39,9 +39,15 @@ class Player
     puts "#{@name} found a #{treasure.name} worth #{treasure.points} points."
     puts "#{@name}'s treasures: #{@found_treasures}"
   end
+  def each_found_treasure()
+    @found_treasures.each do |key,value|
+      yield Treasure.new(key,value)
+    end
+
+  end
   def points
     @found_treasures.values.reduce(0, :+)
-    end
+  end
 
 end
 

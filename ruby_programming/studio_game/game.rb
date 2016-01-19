@@ -33,8 +33,12 @@ class Game
     print "\nTotal Treasure Points in game #{total_points}. \n"
 
     print "\nPlayer's Point Totals:\n"
-    @players.each do |p|
+    @players.sort.each do |p|
       puts "#{p.name}'s total points:"
+      p.each_found_treasure do |t|
+        puts "#{t.points} total #{t.name} points"
+      end
+
       puts "#{p.points} grand total points."
     end
     puts "\n#{@title} High Scores:"
