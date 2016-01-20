@@ -1,3 +1,4 @@
+require 'csv'
 require_relative 'die'
 require_relative 'player'
 require_relative 'game_turn'
@@ -12,12 +13,31 @@ class Game
     @players = []
   end
 
+  def load_players(from_file)
+    CSV.foreach(from_file) do |row|
+      plr = Player.new(row[0], row[1].to_i)
+      add_player(plr)
+    end
+  end
+  def save_high_scores(to_file="scores.txt")
+    File.open(to_file, "w") do |file|
+      file.puts "#{@title} High Scores:"
+      @players.sort.each do |plr|
+        file.puts high_score_entry(plr)
+      end
+    end
+  end
   def add_player (player)
     @players.push(player)
   end
   def total_points
     @players.reduce(0) { |s,p| s + p.points }
 
+  end
+
+  def high_score_entry(player)
+    formatted_name = player.name.ljust(20, '.')
+    "#{formatted_name} #{player.score}"
   end
 
   def print_stats ()
@@ -43,8 +63,7 @@ class Game
     end
     puts "\n#{@title} High Scores:"
     @players.sort.each do |plr|
-      fn = plr.name.ljust(20, '.')
-      puts "#{fn} #{plr.score}"
+      puts high_score_entry(plr)
       end
     end
 

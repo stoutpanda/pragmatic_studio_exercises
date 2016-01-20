@@ -1,10 +1,22 @@
-#Custom Iterators
+#Input/Output
 require_relative 'game'
 require_relative 'player'
 
   knuckleheads = Game.new("Knuckleheads")
-  knuckleheads.add_player(player1 = Player.new("Mike",80))
-  knuckleheads.add_player(player2 = Player.new("frank",75))
-  knuckleheads.add_player(player3 = Player.new("trevor",110))
-  knuckleheads.play(100)
-  knuckleheads.print_stats
+  knuckleheads.load_players(ARGV.shift || "players.csv")
+
+  loop do
+    puts "\nHow many game rounds? ('quit' to exit)"
+    answer = gets.chomp.downcase
+    case answer
+    when /^\d+$/
+      knuckleheads.play(answer.to_i)
+    when 'quit', 'exit'
+      knuckleheads.print_stats
+      break
+    else
+      puts "Please enter a number or 'quit'"
+    end
+  end
+
+  knuckleheads.save_high_scores

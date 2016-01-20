@@ -8,6 +8,14 @@ class Player
     @health = health
     @found_treasures = Hash.new(0)
   end
+  def load_players(from_file)
+    File.readlines(from_file).each do |row|
+      name, health = row.split(',')
+      player = Player.new(name, Integer(health))
+      add_player(player)
+    end
+  end
+
   def to_s
     "I'm #{@name} with health = #{@health}, points = #{points} and score = #{score}!"
   end
@@ -43,8 +51,9 @@ class Player
     @found_treasures.each do |key,value|
       yield Treasure.new(key,value)
     end
-
   end
+
+
   def points
     @found_treasures.values.reduce(0, :+)
   end
