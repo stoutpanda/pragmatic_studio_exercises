@@ -3,9 +3,9 @@ require_relative 'die'
 require_relative 'treasure_trove'
 
 module GameTurn
-
+die = Die.new
  def self.take_turn(player)
-    die = Die.new
+
 
    case die.roll
     when 1..2

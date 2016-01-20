@@ -1,5 +1,8 @@
 require_relative 'treasure_trove'
+require_relative 'playable'
+
 class Player
+  include Playable
   attr_reader :health,:score,:points #getter method
   attr_accessor :name # getter & setter
 
@@ -22,23 +25,15 @@ class Player
   def <=>(othr_plr)
     othr_plr.score <=> score
   end
-  def w00t
-    @health += 15
-    puts "#{@name} got wooted!"
-  end
-  def blam
-    @health -= 10
-    puts "#{@name} got blammed!"
-  end
+
+
   def score
     @health + points
   end
   def name
     @name = @name.capitalize
   end
-  def strong?
-    @health > 100
-  end
+
   def print_n_a_h()
     puts "#{@name} (#{@health})"
   end
