@@ -36,3 +36,8 @@ puts "Total Miles: #{total_miles}"
 
 kilo_total = kilo_flight.reduce(:+)
 puts "Total Kilometers: #{kilo_total}"
+
+bronze_kilo = flyers.select { |f| f.status == :bronze }.reduce(0) { |t,f| t + (f.miles_flown  * 1.6) }
+puts "Bronze Fliers: #{bronze_kilo}"
+
+puts "Top flight! #{flyers.max_by { |f| f.miles_flown }}"
