@@ -23,14 +23,16 @@ flyers << Flyer.new("Moe", "moe@example.com", 1000)
 flyers << Flyer.new("Curly", "curly@example.com", 3000, :gold)
 flyers << Flyer.new("Shemp", "shemp@example.com", 2000)
 
-frequent_flyers = flyers.select { |f| f.miles_flown >= 3000 }
-puts frequent_flyers
+platinum_class, regular_class = flyers.partition { |f| f.status == :platinum }
 
-infrequent_flyers = flyers.reject { |f| f.miles_flown >= 3000 }
-puts infrequent_flyers
+name_tag = flyers.map { |f| "#{f.name.upcase} (#{f.status.upcase})" }
+puts name_tag
 
-platinum_status = flyers.select { |f| f.status == :platinum}
-puts platinum_status
+kilo_flight  = flyers.map { |f| f.miles_flown * 1.6 }
+p kilo_flight
 
-bronze_first = flyers.detect { |f| f.status == :bronze}
-puts bronze_first
+total_miles = flyers.reduce(0) { |t,f| t + f.miles_flown }
+puts "Total Miles: #{total_miles}"
+
+kilo_total = kilo_flight.reduce(:+)
+puts "Total Kilometers: #{kilo_total}"
